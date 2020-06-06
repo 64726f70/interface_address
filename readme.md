@@ -2,6 +2,17 @@
   <h1>Interface Address</h1>
 </div>
 
+<p align="center">
+  <a href="https://crystal-lang.org">
+    <img src="https://img.shields.io/badge/built%20with-crystal-000000.svg" /></a>    
+  <a href="https://github.com/64726f70/interface_address.cr/actions">
+    <img src="https://github.com/64726f70/interface_address.cr/workflows/Continuous%20Integration/badge.svg" /></a>
+  <a href="https://github.com/64726f70/interface_address.cr/releases">
+    <img src="https://img.shields.io/github/release/64726f70/interface_address.cr.svg" /></a>
+  <a href="https://github.com/64726f70/interface_address.cr/blob/master/license">
+    <img src="https://img.shields.io/github/license/64726f70/interface_address.cr.svg"></a>
+</p>
+
 ## Description
 
 * This repository is not much different from [t-richards / interface_address](https://github.com/t-richards/interface_address).
