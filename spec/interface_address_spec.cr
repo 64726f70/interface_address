@@ -1,13 +1,13 @@
-require "./spec_helper"
+require "./spec_helper.cr"
 
 describe InterfaceAddress do
   it "works" do
-    interfaces = InterfaceAddress.get_interface_addresses
+    interfaces = InterfaceAddress.get!
     interfaces.size.should be > 0_i32
   end
 
   it "has important properties" do
-    interfaces = InterfaceAddress.get_interface_addresses
+    interfaces = InterfaceAddress.get!
     result = interfaces.first
 
     result.interface_name.should be_a String

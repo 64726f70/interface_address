@@ -1,2 +1,2 @@
 require "spec"
-require "../src/interface_address"
+require "../src/interface_address.cr"
