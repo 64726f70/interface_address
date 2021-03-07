@@ -26,17 +26,26 @@ module InterfaceAddress
     if_addr_list
   end
 
-  def self.get_ipaddresses! : Set(Socket::IPAddress)
-    get!.map(&.ip_address).to_set
+  def self.get_ip_addresses! : Set(Socket::IPAddress)
+    set = get!.map(&.ip_address).to_set
+
+    set << Socket::IPAddress.new Socket::IPAddress::UNSPECIFIED6, 0_i32
+    set << Socket::IPAddress.new Socket::IPAddress::UNSPECIFIED, 0_i32
+
+    set
   end
 
-  def self.get_ipaddresses!(port : Int32) : Set(Socket::IPAddress)
+  def self.get_ip_addresses!(port : Int32) : Set(Socket::IPAddress)
     if_addrs = get!.map { |if_addr| Socket::IPAddress.new address: if_addr.ip_address.address, port: port }
+
+    if_addrs << Socket::IPAddress.new Socket::IPAddress::UNSPECIFIED6, port
+    if_addrs << Socket::IPAddress.new Socket::IPAddress::UNSPECIFIED, port
+
     if_addrs.to_set
   end
 
   def self.includes?(ip_address : Socket::IPAddress, interface_port : Int32) : Bool
-    ipaddresses = get_ipaddresses! port: interface_port
-    ipaddresses.includes? ip_address
+    ip_addresses = get_ip_addresses! port: interface_port
+    ip_addresses.includes? ip_address
   end
 end
