@@ -5,7 +5,12 @@ module InterfaceAddress
   def self.get! : Set(IfAddr)
     if_addr_list = Set(IfAddr).new
     if_addrs = C.getifaddrs out pointer_if_addrs
-    return if_addr_list unless if_addrs.zero?
+    root_pointer = pointer_if_addrs
+
+    unless if_addrs.zero?
+      C.freeifaddrs ifa: root_pointer
+      return if_addr_list
+    end
 
     while pointer_if_addrs
       begin
@@ -23,6 +28,7 @@ module InterfaceAddress
       pointer_if_addrs = pointer_if_addrs.value.ifa_next
     end
 
+    C.freeifaddrs ifa: root_pointer
     if_addr_list
   end
 

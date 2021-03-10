@@ -10,4 +10,5 @@ lib C
   end
 
   fun getifaddrs(ifap : Ifaddrs**) : LibC::Int
+  fun freeifaddrs(ifa : Ifaddrs*) : Void*
 end
