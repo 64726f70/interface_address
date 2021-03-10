@@ -24,7 +24,8 @@
 
 ## Additional Improvements
 
-* Safety inspection.
+* [X] Safety inspection.
+* [X] God damn it, Fix upstream hidden memory leak problem.
 
 ### Used as Shard
 
