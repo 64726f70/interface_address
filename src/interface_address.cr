@@ -50,8 +50,16 @@ module InterfaceAddress
     if_addrs.to_set
   end
 
-  def self.includes?(ip_address : Socket::IPAddress, interface_port : Int32) : Bool
-    ip_addresses = get_ip_addresses! port: interface_port
-    ip_addresses.includes? ip_address
+  def self.includes?(ip_address : Socket::IPAddress, server_port : Int32) : Bool
+    ip_addresses = get_ip_addresses! port: server_port
+
+    case ip_address.port
+    when 0_i32
+      return true if ip_addresses.find { |_ip_address| _ip_address.address == ip_address.address }
+
+      false
+    else
+      ip_addresses.includes? ip_address
+    end
   end
 end
